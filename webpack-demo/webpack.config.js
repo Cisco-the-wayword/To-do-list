@@ -7,9 +7,18 @@ module.exports = {
   devServer: {
     static: './dist',
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Output Management',
+      template: './src/index.html',
     }),
   ],
   output: {
