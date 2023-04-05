@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { round } = require('lodash');
 
 module.exports = {
   mode: 'development',
