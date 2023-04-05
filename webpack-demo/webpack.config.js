@@ -1,12 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { round } = require('lodash');
 
 module.exports = {
-  mode: 'development',
+    mode: 'development',
   entry: './src/index.js',
   devServer: {
     static: './dist',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -17,13 +24,10 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
+    clean: true,
+    publicPath: '/',
   },
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-    ],
+  optimization: {
+    runtimeChunk: 'single',
   },
 };
