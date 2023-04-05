@@ -2,23 +2,23 @@ const tasks = [
   {
     description: 'Walk the dog',
     completed: false,
-    index: 1
+    index: 1,
   },
   {
     description: 'Buy groceries',
     completed: true,
-    index: 2
+    index: 2,
   },
   {
     description: 'Do laundry',
     completed: false,
-    index: 3
+    index: 3,
   },
   {
     description: 'Pay bills',
     completed: false,
-    index: 4
-  }
+    index: 4,
+  },
 ];
 
 function renderTodoList(tasks) {
