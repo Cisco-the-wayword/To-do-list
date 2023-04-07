@@ -1,3 +1,6 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable no-plusplus */
+/* eslint-disable linebreak-style */
 /* eslint for-direction: "error" */
 export const saveTasks = (tasks) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -18,7 +21,7 @@ export const addTask = (description, tasks) => {
 // Function for deleting or removing tasks
 export const deleteTask = (index, tasks) => {
   tasks.splice(index, 1);
-  for (let i = index; i < tasks.length; i += 1) {
+  for (let i = index; i < tasks.length; i++) {
     tasks[i].index = i + 1;
   }
   saveTasks(tasks);
