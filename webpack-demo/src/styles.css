@@ -1,118 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-li {
-  list-style: none;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
 }
 
 body {
-  background-color: rgb(81, 245, 231);
-  color: #545862;
-  font-size: 1rem;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 300;
+  background-color: #f6f6f6;
+  font-family: 'Open Sans', sans-serif;
 }
 
-h1 {
-  font-size: 0.9375rem;
-  font-weight: 400;
+.fullContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
 }
 
-.to-do-container {
+.h1-text {
+  font-size: 1.1rem;
+  color: dimgray;
+}
+
+.div-item {
+  width: 25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #fff;
-  border-radius: 2px;
-  margin: 250px auto;
-  overflow: hidden;
-  width: 350px;
-}
-
-.to-do-header {
-  display: flex;
-  justify-content: space-between;
+  border-top: 1px solid lightgray;
   padding: 1rem;
+  border-right: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.151);
 }
 
-.to-do-form {
-  cursor: pointer;
+.ul-items {
+  list-style: none;
+}
+
+.li-item {
   display: flex;
-  justify-content: space-between;
-  padding: 0 0.5rem 0 1rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.to-do-add {
-  border: 0;
+.add-item {
+  border: none;
   font-style: italic;
 }
 
-.to-do-item {
-  align-items: center;
-  display: grid;
-  grid-template-columns: 3fr 25fr 1fr;
-  padding: 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+.bt {
+  cursor: pointer;
+  padding: 0.3rem;
+  border: none;
+  background-color: #fff;
 }
 
-.check-button {
-  background-color: transparent;
-  border: 2px solid #c1c1c3;
-  border-radius: 2px;
+.drag {
+  cursor: move;
+  caret-color: black;
+}
+
+.clean {
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid lightgray;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.151);
+}
+
+.clear-text {
+  color: gray;
   cursor: pointer;
-  height: 1rem;
+}
+
+.input-text {
+  border: none;
+}
+
+.trash-icon {
+  background-image: url(https://i.postimg.cc/0yH6fbXn/icons8-eliminar-50-1.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 1rem;
-  transition: border 0.3s;
-}
-
-.check-button:hover {
-  border: 2px solid #808080;
-}
-
-.clear-completed {
-  border: 0;
-  cursor: pointer;
-  padding: 1rem;
-  opacity: 0.5;
-  width: 100%;
-  transition: all 0.5s;
-}
-
-.clear-completed:hover {
-  text-decoration: underline;
-  opacity: 0.8;
-}
-
-.fa-check {
-  color: #5490ffda;
+  height: 1rem;
+  padding: 0.5rem;
   display: none;
 }
 
-.fa-sync-alt,
-.fa-arrow-left {
-  opacity: 0.5;
-}
-
-.fa-ellipsis-v {
-  color: #c1c1c3;
-  transition: all 0.5s;
-}
-
-.fa-ellipsis-v:hover {
+.button-item {
   cursor: move;
-  opacity: 0.3;
 }
 
-.task-description {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
+.clear-text:hover {
+  text-decoration: underline;
+  color: black;
 }
 
-.task-more {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 1.2em;
-  font-weight: bold;
+.add-item:focus {
+  outline: none;
+}
+
+.input-text:focus {
+  outline: none;
+}
+
+.input-text.activated {
+  text-decoration: line-through;
+  color: gray;
 }

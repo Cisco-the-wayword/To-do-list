@@ -86,6 +86,7 @@ Example commands:
  $ git@github.com:Cisco-the-wayword/To-do-list.git
 ```
 
+
 ### Install
 
 Install git to work on this project with:
@@ -101,8 +102,7 @@ Install git to work on this project with:
 To run the project have Node.js installed, execute the following command:
 
 ```sh
-  $ npm install http-server -g
-  $ http-server
+ Run the code on your code editor's live server.
 ```
 
 Go to your browser and type localhost:8080. Your Application should run

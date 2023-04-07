@@ -23,6 +23,7 @@
     "webpack-dev-server": "^4.13.2"
   },
   "dependencies": {
+    "eslint": "^8.37.0",
     "lodash": "^4.17.20"
   }
 }
