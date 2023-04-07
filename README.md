@@ -102,7 +102,7 @@ Install git to work on this project with:
 To run the project have Node.js installed, execute the following command:
 
 ```sh
- Run the code on your code editor's server.
+ Run the code on your code editor's live server.
 ```
 
 Go to your browser and type localhost:8080. Your Application should run
