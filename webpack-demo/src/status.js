@@ -1,14 +1,21 @@
 /* eslint-disable linebreak-style */
-export const updateStatus = (index, tasks, completed) => {
-  tasks[index].completed = completed;
+export const saveTasks = (tasks) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
-export const clearCompleted = (tasks) => {
+export const addCheckboxEventListener = (checkbox, task, input, tasks) => {
+  checkbox.addEventListener('change', () => {
+    task.completed = checkbox.checked;
+    input.classList.toggle('activated');
+    saveTasks(tasks);
+  });
+};
+
+export const handlerClearText = (tasks) => {
   tasks = tasks.filter((task) => !task.completed);
   tasks.forEach((task, i) => {
     task.index = i + 1;
   });
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  saveTasks(tasks);
   return tasks;
 };

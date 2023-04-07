@@ -1,15 +1,9 @@
-/* eslint-disable no-unused-vars */
-import {
-  saveTasks,
-  addTask,
-  deleteTask,
-  editTask,
-} from './tasks.js';
-import {
-  updateStatus,
-  clearCompleted,
-} from './status.js';
+/* eslint-disable linebreak-style */
+/* eslint-disable import/no-unresolved */
+import { addTask, deleteTaskByIndex, editTask } from './tasks.js';
+import { saveTasks, addCheckboxEventListener, handlerClearText } from './status.js';
 
+// Get the task list from local storage or initialize it to an empty array
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 // Select the necessary HTML elements
@@ -18,7 +12,8 @@ const addInput = document.querySelector('.add-item');
 const enter = document.querySelector('.enter');
 const clearText = document.querySelector('.clear-text');
 
-const renderTasks = () => {
+// Define a function to render the tasks in the UI
+const renderTasks = (tasks) => {
   ul.innerHTML = '';
   tasks.forEach((task, index) => {
     const li = document.createElement('li');
@@ -35,6 +30,7 @@ const renderTasks = () => {
     button.textContent = '፧';
     button.setAttribute('class', 'bt button-item');
     trash.setAttribute('class', 'bt trash-icon');
+    trash.dataset.index = index;
     trashDrag.setAttribute('class', 'trash-drag');
     const divItem = document.createElement('div');
     divItem.setAttribute('class', 'div-item');
@@ -47,10 +43,7 @@ const renderTasks = () => {
     ul.appendChild(divItem);
 
     // Add event listeners for the checkbox, input and buttons
-    checkbox.addEventListener('change', () => {
-      const completed = checkbox.checked;
-      updateStatus(index, tasks, completed);
-    });
+    addCheckboxEventListener(checkbox, task, input, tasks);
 
     input.addEventListener('click', () => {
       divItem.style.backgroundColor = 'lightgoldenrodyellow';
@@ -59,56 +52,52 @@ const renderTasks = () => {
       trash.style.display = 'block';
     });
 
-    // trash.addEventListener('click', () => {
-    //   deleteTask(index, tasks);
-    //   renderTasks();
-    // });
-
-    input.addEventListener('blur', () => {
-      setTimeout(() => {
-        editTask(index, input.value, tasks);
-        divItem.style.backgroundColor = '#fff';
-        input.style.backgroundColor = '#fff';
-        button.style.display = 'block';
-        trash.style.display = 'none';
-      }, 125);
+    trash.addEventListener('click', (event) => {
+      const { index } = event.target.dataset;
+      tasks = deleteTaskByIndex(index, tasks);
+      saveTasks(tasks);
+      renderTasks(tasks);
     });
 
     input.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' && input.value) {
-        editTask(index, input.value, tasks);
+        tasks = editTask(index, input.value, tasks);
+        saveTasks(tasks);
         divItem.style.backgroundColor = '#fff';
         input.style.backgroundColor = '#fff';
         button.style.display = 'block';
         trash.style.display = 'none';
       }
     });
+
+    if (task.completed === true) {
+      input.classList.toggle('activated');
+    }
   });
 };
 
-renderTasks();
+// Render the initial tasks
+renderTasks(tasks);
 
 // Add event listener for adding a new task
-const addNewTask = () => {
-  if (addInput.value) {
-    addTask(addInput.value, tasks);
-    addInput.value = '';
-    renderTasks();
-  }
-};
-
 addInput.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    addNewTask();
+  if (event.key === 'Enter' && addInput.value) {
+    tasks = addTask(addInput.value, tasks);
+    saveTasks(tasks);
+    addInput.value = '';
+    renderTasks(tasks);
   }
 });
 
 enter.addEventListener('click', () => {
-  addNewTask();
+  tasks = addTask(addInput.value, tasks);
+  saveTasks(tasks);
+  addInput.value = '';
+  renderTasks(tasks);
 });
 
 // Add event listener for clearing completed tasks
 clearText.addEventListener('click', () => {
-  tasks = clearCompleted(tasks);
-  renderTasks();
+  tasks = handlerClearText(tasks);
+  renderTasks(tasks);
 });

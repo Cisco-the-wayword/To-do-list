@@ -1,22 +1,24 @@
 /* eslint-disable linebreak-style */
-/* eslint-disable no-plusplus */
-/* eslint-disable linebreak-style */
-export const saveTasks = (tasks) => {
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-};
-
+// Define the functions for adding, deleting and editing tasks
 export const addTask = (description, tasks) => {
-  const newTask = { description, completed: false };
-  tasks.push(newTask);
-  saveTasks(tasks);
+  const task = {
+    description,
+    completed: false,
+    index: tasks.length + 1,
+  };
+  tasks.push(task);
+  return tasks;
 };
 
-export const deleteTask = (index, tasks) => {
+export const deleteTaskByIndex = (index, tasks) => {
   tasks.splice(index, 1);
-  saveTasks(tasks);
+  tasks.forEach((task, i) => {
+    task.index = i + 1;
+  });
+  return tasks;
 };
 
 export const editTask = (index, description, tasks) => {
   tasks[index].description = description;
-  saveTasks(tasks);
+  return tasks;
 };
