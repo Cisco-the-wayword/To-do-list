@@ -1,33 +1,21 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-plusplus */
 /* eslint-disable linebreak-style */
-/* eslint for-direction: "error" */
 export const saveTasks = (tasks) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
-// Define the functions for adding tasks
 export const addTask = (description, tasks) => {
-  const task = {
-    description,
-    completed: false,
-    index: tasks.length + 1,
-  };
-  tasks.push(task);
+  const newTask = { description, completed: false };
+  tasks.push(newTask);
   saveTasks(tasks);
-  return task;
 };
 
-// Function for deleting or removing tasks
 export const deleteTask = (index, tasks) => {
   tasks.splice(index, 1);
-  for (let i = index; i < tasks.length; i++) {
-    tasks[i].index = i + 1;
-  }
   saveTasks(tasks);
 };
 
-// Function for editing task description.
 export const editTask = (index, description, tasks) => {
   tasks[index].description = description;
   saveTasks(tasks);

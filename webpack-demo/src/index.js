@@ -1,6 +1,14 @@
+/* eslint-disable no-unused-vars */
 import {
-  saveTasks, addTask, deleteTask, editTask,
+  saveTasks,
+  addTask,
+  deleteTask,
+  editTask,
 } from './tasks.js';
+import {
+  updateStatus,
+  clearCompleted,
+} from './status.js';
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
@@ -8,6 +16,7 @@ let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 const ul = document.querySelector('.ul-items');
 const addInput = document.querySelector('.add-item');
 const enter = document.querySelector('.enter');
+const clearText = document.querySelector('.clear-text');
 
 const renderTasks = () => {
   ul.innerHTML = '';
@@ -39,9 +48,8 @@ const renderTasks = () => {
 
     // Add event listeners for the checkbox, input and buttons
     checkbox.addEventListener('change', () => {
-      task.completed = checkbox.checked;
-      input.classList.toggle('activated');
-      saveTasks(tasks);
+      const completed = checkbox.checked;
+      updateStatus(index, tasks, completed);
     });
 
     input.addEventListener('click', () => {
@@ -51,10 +59,10 @@ const renderTasks = () => {
       trash.style.display = 'block';
     });
 
-    trash.addEventListener('click', () => {
-      deleteTask(index, tasks);
-      renderTasks();
-    });
+    // trash.addEventListener('click', () => {
+    //   deleteTask(index, tasks);
+    //   renderTasks();
+    // });
 
     input.addEventListener('blur', () => {
       setTimeout(() => {
@@ -100,12 +108,7 @@ enter.addEventListener('click', () => {
 });
 
 // Add event listener for clearing completed tasks
-const clearText = document.querySelector('.clear-text');
 clearText.addEventListener('click', () => {
-  tasks = tasks.filter((task) => !task.completed);
-  tasks.forEach((task, i) => {
-    task.index = i;
-  });
-  saveTasks(tasks);
+  tasks = clearCompleted(tasks);
   renderTasks();
 });
