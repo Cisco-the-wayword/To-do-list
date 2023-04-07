@@ -14,7 +14,7 @@ export const addTask = (description, tasks) => {
   return task;
 };
 
-//Function for deleting or removing tasks
+// Function for deleting or removing tasks
 export const deleteTask = (index, tasks) => {
   tasks.splice(index, 1);
   tasks.forEach((task, i) => {
@@ -23,7 +23,7 @@ export const deleteTask = (index, tasks) => {
   saveTasks(tasks);
 };
 
-//Function for editing task description.
+// Function for editing task description.
 export const editTask = (index, description, tasks) => {
   tasks[index].description = description;
   saveTasks(tasks);
