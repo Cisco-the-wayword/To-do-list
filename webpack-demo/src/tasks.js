@@ -1,10 +1,8 @@
-// Define a function to save the tasks in local storage
 export const saveTasks = (tasks) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
-  console.log('SHsysskk')
 };
 
-// Define the functions for adding, deleting and editing tasks
+// Define the functions for adding tasks
 export const addTask = (description, tasks) => {
   const task = {
     description,
@@ -16,6 +14,7 @@ export const addTask = (description, tasks) => {
   return task;
 };
 
+//Function for deleting or removing tasks
 export const deleteTask = (index, tasks) => {
   tasks.splice(index, 1);
   tasks.forEach((task, i) => {
@@ -24,6 +23,7 @@ export const deleteTask = (index, tasks) => {
   saveTasks(tasks);
 };
 
+//Function for editing task description.
 export const editTask = (index, description, tasks) => {
   tasks[index].description = description;
   saveTasks(tasks);

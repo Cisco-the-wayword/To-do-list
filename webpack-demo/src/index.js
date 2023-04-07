@@ -2,7 +2,6 @@ import {
   saveTasks, addTask, deleteTask, editTask,
 } from './tasks.js';
 
-// Get the task list from local storage or initialize it to an empty array
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 // Select the necessary HTML elements
@@ -10,7 +9,6 @@ const ul = document.querySelector('.ul-items');
 const addInput = document.querySelector('.add-item');
 const enter = document.querySelector('.enter');
 
-// Define a function to render the tasks in the UI
 const renderTasks = () => {
   ul.innerHTML = '';
   tasks.forEach((task, index) => {
@@ -38,6 +36,7 @@ const renderTasks = () => {
     divItem.appendChild(li);
     divItem.appendChild(trashDrag);
     ul.appendChild(divItem);
+
     // Add event listeners for the checkbox, input and buttons
     checkbox.addEventListener('change', () => {
       task.completed = checkbox.checked;
@@ -79,7 +78,6 @@ const renderTasks = () => {
   });
 };
 
-// Render the initial tasks
 renderTasks();
 
 // Add event listener for adding a new task
