@@ -1,4 +1,4 @@
-/*eslint for-direction: "error"*/
+/* eslint for-direction: "error" */
 export const saveTasks = (tasks) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
